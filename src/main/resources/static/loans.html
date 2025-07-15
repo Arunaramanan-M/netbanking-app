@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Loans</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<div class="sidebar">
+    <h2>NetBanking</h2>
+    <nav>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="transactions.html">Transactions</a>
+        <a href="payments.html">Bill Payments</a>
+        <a href="notifications.html">Notifications</a>
+        <a href="#">Loans</a>
+        <a href="profile.html">Profile</a>
+        <a href="#">Logout</a>
+    </nav>
+</div>
+<main>
+    <h1>Loan Application</h1>
+    <form class="auth-form">
+        <input type="number" placeholder="Loan Amount ($)" required>
+        <select required>
+            <option value="">Select Loan Type</option>
+            <option value="personal">Personal</option>
+            <option value="home">Home</option>
+            <option value="auto">Auto</option>
+        </select>
+        <button type="submit">Apply</button>
+    </form>
+    <h2>Loan Status</h2>
+    <ul>
+        <li>Home Loan - $150,000 - Approved</li>
+    </ul>
+</main>
+</body>
+</html>
