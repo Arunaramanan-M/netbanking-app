@@ -75,7 +75,7 @@ async function startLogin(event) {
     const result = await response.text();
 
     if (response.ok) {
-      if (result === "2FA required") {
+      if (result.includes("2FA required")) {
         alert("2FA is enabled. OTP sent to your email.");
         document.getElementById('login-form').classList.add('hidden');
         document.getElementById('login-2fa-form').classList.remove('hidden');
