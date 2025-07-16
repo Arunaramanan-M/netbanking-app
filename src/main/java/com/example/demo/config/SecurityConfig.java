@@ -30,6 +30,7 @@ public class SecurityConfig {
                                 "/js/**",
                                 "/api/auth/**"
                         ).permitAll()
+                        .requestMatchers("/api/auth/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(login -> login.disable())
