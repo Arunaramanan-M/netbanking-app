@@ -34,7 +34,14 @@
         <input type="text" id="login-username" placeholder="Username" required>
         <input type="password" id="login-password" placeholder="Password" required>
         <button type="submit">Login</button>
+
+        <!-- Admin Redirect Button -->
+        <div class="admin-login-option">
+            <p>Are you an admin?</p>
+            <button type="button" class="admin-login-btn" onclick="goToAdminLogin()">Go to Admin Login</button>
+        </div>
     </form>
+
     <!-- Login 2FA Step -->
     <form id="login-2fa-form" class="auth-form hidden" onsubmit="verifyLogin2FA(event)">
         <input type="text" id="login-2fa-code" placeholder="Enter 2FA Code from email" required>

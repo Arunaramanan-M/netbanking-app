@@ -165,4 +165,20 @@ public class AuthController {
         return ResponseEntity.ok("Login successful");
     }
 
+    @PostMapping("/admin-login")
+    public ResponseEntity<String> adminLogin(@RequestBody LoginRequest req) {
+        User user = userService.findByUsername(req.getUsername());
+
+        if (user == null || !passwordEncoder.matches(req.getPassword(), user.getPasswordHash())) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
+        }
+
+        if (!user.getRole().getRoleName().equalsIgnoreCase("ADMIN")) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Access denied: Not an admin");
+        }
+
+        return ResponseEntity.ok("Admin login successful");
+    }
+
+
 }

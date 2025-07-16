@@ -26,6 +26,7 @@ public class SecurityConfig {
                                 "/profile.html",
                                 "/notifications.html",
                                 "/audit_log.html",
+                                "admin-login.html",
                                 "/css/**",
                                 "/js/**",
                                 "/api/auth/**"

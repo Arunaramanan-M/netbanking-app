@@ -128,4 +128,7 @@ async function verifyLogin2FA(event) {
   }
 }
 
+function goToAdminLogin() {
+    window.location.href = "/admin-login.html"; // change to your actual admin login page
+}
 
