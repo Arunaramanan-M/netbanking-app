@@ -42,6 +42,10 @@ public class AccountRequestService {
         return requestRepository.findAll();
     }
 
+    public List<AccountRequest> getActiveRequests() {
+        return requestRepository.findByStatus("PENDING");
+    }
+
     @Transactional
     public boolean approveRequest(Long id) {
         Optional<AccountRequest> reqOpt = requestRepository.findById(id);

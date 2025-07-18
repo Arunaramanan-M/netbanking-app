@@ -24,9 +24,15 @@ public class AccountRequestController {
     }
 
     @GetMapping("/requests")
-    public List<AccountRequest> getAllRequests() {
-        return requestService.getAllRequests();
+    public List<AccountRequest> getActiveRequests() {
+        return requestService.getActiveRequests();
     }
+
+
+//    @GetMapping("/requests")
+//    public List<AccountRequest> getAllRequests() {
+//        return requestService.getAllRequests();
+//    }
 
     @PostMapping("/approve/{id}")
     public String approve(@PathVariable Long id) {
