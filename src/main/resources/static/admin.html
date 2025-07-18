@@ -19,10 +19,7 @@
 </div>
 <main>
     <h1>Welcome, Admin!</h1>
-    <section class="overview">
-        <p>Total Users: 1243</p>
-        <p>System Status: OK</p>
-    </section>
+
     <section>
         <h1>Account Requests</h1>
         <table id="requestsTable">
@@ -51,19 +48,16 @@
             const row = document.createElement("tr");
 
             row.innerHTML = `
-  <td>${req.id}</td>
-  <td>${req.user.username}</td>
-  <td>${req.accountType}</td>
-  <td>${req.initialDeposit}</td>
-  <td id="status-${req.id}">${req.status}</td>
-  <td>
-    ${req.status === 'PENDING' ? `
-      <button onclick="approve(${req.id})">Approve</button>
-      <button onclick="deny(${req.id})">Deny</button>
-    ` : ''}
-  </td>
-`;
-
+              <td>${req.id}</td>
+              <td>${req.user.username}</td>
+              <td>${req.accountType}</td>
+              <td>${req.initialDeposit}</td>
+              <td id="status-${req.id}">${req.status}</td>
+              <td>
+                <button onclick="approve(${req.id})">Approve</button>
+                <button onclick="deny(${req.id})">Deny</button>
+              </td>
+            `;
 
             tbody.appendChild(row);
           }
