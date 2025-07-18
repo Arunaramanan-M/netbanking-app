@@ -8,6 +8,10 @@ function showRegister() {
   document.getElementById('login-form').classList.add('hidden');
 }
 
+const username = localStorage.getItem("loggedInUser") || "Customer";
+document.getElementById("welcome-message").innerText = `Welcome, ${username}!`;
+
+
 // Registration Flow without OTP
 async function startRegistration(event) {
   event.preventDefault();
@@ -83,9 +87,10 @@ async function startLogin(event) {
         // Store username temporarily for 2FA verification
         localStorage.setItem('2faUser', requestBody.username);
       } else if (result === 'Login successful') {
-        alert("Login successful!");
-        window.location.href = "dashboard.html";
-      }
+               alert("Login successful!");
+               localStorage.setItem("loggedInUser", username); // <-- ADD THIS
+               window.location.href = "dashboard.html";
+             }
     } else {
       alert(result);
     }
@@ -119,6 +124,7 @@ async function verifyLogin2FA(event) {
     if (response.ok && result.includes("Login successful")) {
       alert("Login successful!");
       localStorage.removeItem('2faUser');
+      localStorage.setItem("loggedInUser", username); // <-- ADD THIS
       window.location.href = "dashboard.html";
     } else {
       alert(result);

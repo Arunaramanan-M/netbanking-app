@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create New Account</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<div class="sidebar">
+  <h2>NetBanking</h2>
+  <nav>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="transactions.html">Transactions</a>
+    <a href="payments.html">Payments</a>
+    <a href="notifications.html">Notifications</a>
+    <a href="loans.html">Loans</a>
+    <a href="#">Profile</a>
+    <a href="#">Logout</a>
+  </nav>
+</div>
+<main>
+  <h1>Open New Bank Account</h1>
+  <form class="auth-form" onsubmit="submitAccountRequest(event)">
+    <select id="account-type" required>
+      <option value="">Select Account Type</option>
+      <option value="Savings">Savings</option>
+      <option value="Current">Current</option>
+    </select>
+    <input type="number" id="deposit-amount" placeholder="Initial Deposit" required>
+    <button type="submit">Submit Request</button>
+  </form>
+</main>
+<script>
+  async function submitAccountRequest(event) {
+    event.preventDefault();
+    const username = localStorage.getItem("loggedInUser"); // store this on login!
+    const type = document.getElementById('account-type').value;
+    const amount = document.getElementById('deposit-amount').value;
+
+    const params = new URLSearchParams({
+      username: username,
+      accountType: type,
+      depositAmount: amount
+    });
+
+    const res = await fetch("/api/accounts/create?" + params, { method: "POST" });
+    const msg = await res.text();
+    alert(msg);
+    window.location.href = "dashboard.html";
+  }
+</script>
+</body>
+</html>

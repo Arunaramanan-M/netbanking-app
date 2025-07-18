@@ -22,11 +22,59 @@
     <p>Last Login: Today</p>
   </section>
 
+  <section class="overview">
+    <h2>Your Accounts</h2>
+    <table id="account-table">
+      <thead>
+      <tr>
+        <th>Account Number</th>
+        <th>Type</th>
+        <th>Balance ($)</th>
+        <th>Status</th>
+      </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+
   <section class="feature-grid">
     <div class="feature-box" onclick="location.href='#'">Transactions</div>
     <div class="feature-box" onclick="location.href='#'">Bill Payments</div>
     <div class="feature-box" onclick="location.href='#'">Loans</div>
+    <div class="feature-box" onclick="location.href='account-create.html'">Create New Account</div>
   </section>
+
+  <script>
+    async function loadAccounts() {
+      const username = localStorage.getItem("loggedInUser");
+      if (!username) {
+        alert("No logged-in user found.");
+        return;
+      }
+
+      const res = await fetch(`/api/user/accounts/${username}`);
+      const accounts = await res.json();
+
+      const tbody = document.querySelector("#account-table tbody");
+      tbody.innerHTML = "";
+
+      accounts.forEach(acc => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${acc.accountNumber}</td>
+          <td>${acc.accountType}</td>
+          <td>$ ${acc.balance.toFixed(2)}</td>
+          <td>${acc.status}</td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    window.onload = loadAccounts;
+  </script>
+
+
 </main>
 </body>
 </html>

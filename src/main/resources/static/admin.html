@@ -23,6 +23,69 @@
         <p>Total Users: 1243</p>
         <p>System Status: OK</p>
     </section>
+    <section>
+        <h1>Account Requests</h1>
+        <table id="requestsTable">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Account Type</th>
+                <th>Deposit</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </section>
+
+    <script>
+        async function loadRequests() {
+          const res = await fetch("/api/accounts/requests");
+          const data = await res.json();
+          const tbody = document.querySelector("#requestsTable tbody");
+          tbody.innerHTML = "";
+
+          for (const req of data) {
+            const row = document.createElement("tr");
+
+            row.innerHTML = `
+  <td>${req.id}</td>
+  <td>${req.user.username}</td>
+  <td>${req.accountType}</td>
+  <td>${req.initialDeposit}</td>
+  <td id="status-${req.id}">${req.status}</td>
+  <td>
+    ${req.status === 'PENDING' ? `
+      <button onclick="approve(${req.id})">Approve</button>
+      <button onclick="deny(${req.id})">Deny</button>
+    ` : ''}
+  </td>
+`;
+
+
+            tbody.appendChild(row);
+          }
+        }
+
+        async function approve(id) {
+          const res = await fetch(`/api/accounts/approve/${id}`, { method: 'POST' });
+          const msg = await res.text();
+          alert(msg);
+          loadRequests();
+        }
+
+        async function deny(id) {
+          const res = await fetch(`/api/accounts/deny/${id}`, { method: 'POST' });
+          const msg = await res.text();
+          alert(msg);
+          loadRequests();
+        }
+
+        window.onload = loadRequests;
+    </script>
+
 </main>
 </body>
 </html>
