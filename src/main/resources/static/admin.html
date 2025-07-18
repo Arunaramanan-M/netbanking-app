@@ -54,8 +54,10 @@
               <td>${req.initialDeposit}</td>
               <td id="status-${req.id}">${req.status}</td>
               <td>
+                ${req.status === 'PENDING' ? `
                 <button onclick="approve(${req.id})">Approve</button>
                 <button onclick="deny(${req.id})">Deny</button>
+                ` : ''}
               </td>
             `;
 
