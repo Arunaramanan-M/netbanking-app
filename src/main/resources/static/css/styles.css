@@ -225,3 +225,44 @@ table th, table td {
 .admin-login-btn:hover {
     background-color: #00337a;
 }
+
+.button-approve {
+  background-color: #007bff;
+}
+.button-approve:hover {
+  background-color: #0056b3;
+}
+.button-deny {
+  background-color: #dc3545;
+}
+.button-deny:hover {
+  background-color: #a71d2a;
+}
+.admin-action-btn {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-right: 0.5rem;
+  margin-bottom: 0.1rem;
+  cursor: pointer;
+  transition: background 0.25s, box-shadow 0.25s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.admin-action-btn.approve {
+  background-color: #007bff;
+  color: #fff;
+}
+.admin-action-btn.approve:hover {
+  background-color: #0056b3;
+}
+
+.admin-action-btn.deny {
+  background-color: #dc3545;
+  color: #fff;
+}
+.admin-action-btn.deny:hover {
+  background-color: #a71d2a;
+}
